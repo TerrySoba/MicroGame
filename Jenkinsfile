@@ -1,5 +1,7 @@
 pipeline {
-    agent mingw64
+    agent {
+	label 'mingw64'
+    }
 
     stages {
         stage('Build') {
