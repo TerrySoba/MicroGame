@@ -8,4 +8,7 @@ stages:
       - scripts:
           - cmake -GNinja .
           - ninja
+        artifacts:
+          - name: Micro Game Executable
+            path: MicroGame
       
