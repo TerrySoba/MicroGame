@@ -7,6 +7,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                bat 'cmake -GNinja .'
+                bat 'ninja'
             }
         }
         stage('Test') {
