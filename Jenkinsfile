@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                // label 'mingw64'
-                docker 'yoshi252/mingw64'
+                label 'mingw64'
             }
 
             steps {
@@ -34,6 +33,7 @@ pipeline {
             steps {
                 echo 'Running Smoke Test'
                 unstash 'installed_app'
+                bat 'install\MicroGame\bin\MicroGame.exe'
             }
         }
     }
