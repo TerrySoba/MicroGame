@@ -1,10 +1,11 @@
 pipeline {
-    agent {
-	label 'mingw64'
-    }
-
+    agent none
     stages {
         stage('Build') {
+            agent {
+                label 'mingw64'
+            }
+
             steps {
                 echo 'Building..'
                 bat 'cmake -GNinja .'
@@ -12,6 +13,16 @@ pipeline {
                 bat 'ninja install'
                 bat 'ninja zip'
                 archiveArtifacts artifacts: '**/*.zip', fingerprint: true
+            }
+        }
+
+        stage('Smoke Test') {
+            agent {
+                label 'windows'
+            }
+
+            steps {
+                echo 'Running Smoke Test'
             }
         }
     }
