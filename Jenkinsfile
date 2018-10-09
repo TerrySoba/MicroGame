@@ -14,16 +14,6 @@ pipeline {
                 archiveArtifacts artifacts: '**/*.zip', fingerprint: true
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
     }
 }
 
