@@ -4,6 +4,7 @@ project(MicroGame)
 
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install/${PROJECT_NAME})
 
+include(mingw64.cmake)
 include(sdl2.cmake)
 include(package.cmake)
 

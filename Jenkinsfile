@@ -17,6 +17,9 @@ pipeline {
                 bat 'cmake -GNinja .'
                 bat 'ninja'
                 bat 'ninja install'
+
+                stash includes: 'install', name: 'app'
+
                 bat 'ninja zip'
                 archiveArtifacts artifacts: '**/*.zip', fingerprint: true
             }
@@ -29,6 +32,7 @@ pipeline {
 
             steps {
                 echo 'Running Smoke Test'
+                unstash 'app'
             }
         }
     }
