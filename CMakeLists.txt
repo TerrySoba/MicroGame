@@ -19,4 +19,4 @@ include_directories(
     ${SDL2_INCLUDE_DIR})
 
 target_link_libraries(${PROJECT_NAME}
-    ${SDL2_LIBRARIES} -ldl -pthread)
+    ${SDL2_LIBRARIES} -pthread)
