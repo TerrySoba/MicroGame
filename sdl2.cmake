@@ -5,8 +5,11 @@ if (WIN32)
         ${INTERNAL_SDL2_DIR}/lib/libSDL2.dll.a
         ${INTERNAL_SDL2_DIR}/lib/libSDL2main.a
         )
-
     set(SDL2_INCLUDE_DIR ${INTERNAL_SDL2_DIR}/include)
+
+    install(FILES ${INTERNAL_SDL2_DIR}/bin/SDL2.dll
+        DESTINATION bin)
+
 else (WIN32)
     find_package(SDL2 REQUIRED)
 endif (WIN32)

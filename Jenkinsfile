@@ -9,6 +9,9 @@ pipeline {
                 echo 'Building..'
                 bat 'cmake -GNinja .'
                 bat 'ninja'
+                bat 'ninja install'
+                bat 'ninja zip'
+                archiveArtifacts artifacts: '**/*.zip', fingerprint: true
             }
         }
         stage('Test') {

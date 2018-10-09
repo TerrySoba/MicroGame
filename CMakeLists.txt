@@ -2,7 +2,10 @@ cmake_minimum_required(VERSION 3.10)
 
 project(MicroGame)
 
+set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install/${PROJECT_NAME})
+
 include(sdl2.cmake)
+include(package.cmake)
 
 include_directories(${SDL2_INCLUDE_DIRS})
 
@@ -13,6 +16,13 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(${PROJECT_NAME}
     main.cpp)
+
+install(TARGETS ${PROJECT_NAME}
+        DESTINATION bin)
+
+install(FILES ${CMAKE_SOURCE_DIR}/rgb.bmp
+        DESTINATION bin)
+
 
 include_directories(
     ${OPENGL_INCLUDE_DIR}
