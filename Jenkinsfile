@@ -33,7 +33,7 @@ pipeline {
             steps {
                 echo 'Running Smoke Test'
                 unstash 'installed_app'
-                bat 'install\\MicroGame\\bin\\MicroGame.exe --help'
+                bat 'install\\MicroGame\\bin\\MicroGame.exe --version'
             }
         }
     }
