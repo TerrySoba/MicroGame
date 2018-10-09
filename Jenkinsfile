@@ -1,5 +1,10 @@
 pipeline {
     agent none
+
+    options {
+        skipDefaultCheckout()
+    }
+
     stages {
         stage('Build') {
             agent {
@@ -7,6 +12,7 @@ pipeline {
             }
 
             steps {
+                checkout scm
                 echo 'Building..'
                 bat 'cmake -GNinja .'
                 bat 'ninja'
