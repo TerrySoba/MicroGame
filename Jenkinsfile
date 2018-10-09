@@ -18,7 +18,7 @@ pipeline {
                 bat 'ninja'
                 bat 'ninja install'
 
-                stash includes: 'install', name: 'app'
+                stash includes: 'install/**', name: 'app'
 
                 bat 'ninja zip'
                 archiveArtifacts artifacts: '**/*.zip', fingerprint: true
