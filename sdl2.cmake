@@ -10,6 +10,12 @@ if (WIN32)
     install(FILES ${INTERNAL_SDL2_DIR}/bin/SDL2.dll
         DESTINATION bin)
 
+    install(
+        FILES 
+            $ENV{MINGW_DIR}/bin/libgcc_s_seh-1.dll
+            $ENV{MINGW_DIR}/bin/libstdc++-6.dll
+        DESTINATION bin)
+
 else (WIN32)
     find_package(SDL2 REQUIRED)
 endif (WIN32)
