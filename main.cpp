@@ -1,10 +1,10 @@
+#include "scope_exit.hpp"
+
 #include "SDL2/SDL.h"
 
 // #include "chaiscript/chaiscript.hpp"
 
 #include <tclap/CmdLine.h>
-
-#include <boost/scope_exit.hpp>
 
 #include <exception>
 #include <iostream>
@@ -82,10 +82,10 @@ int main(int argc, char *argv[])
             throw std::runtime_error(message.str());
         }
 
-        BOOST_SCOPE_EXIT_ALL(&)
+        SCOPE_EXIT([]()
         {
-            SDL_Quit();
-        };
+            SDL_Quit();   
+        });
 
         SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, config.screenWidth, config.screenHeight, SDL_WINDOW_SHOWN);
         if (!win)
@@ -95,10 +95,10 @@ int main(int argc, char *argv[])
             throw std::runtime_error(message.str());
         }
 
-        BOOST_SCOPE_EXIT_ALL(&)
+        SCOPE_EXIT([&]()
         {
             SDL_DestroyWindow(win);
-        };
+        });
 
         SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
         if (!ren)
@@ -108,10 +108,10 @@ int main(int argc, char *argv[])
             throw std::runtime_error(message.str());
         }
 
-        BOOST_SCOPE_EXIT_ALL(&)
+        SCOPE_EXIT([&]()
         {
             SDL_DestroyRenderer(ren);
-        };
+        });
 
         std::string imagePath = "rgb.bmp";
         SDL_Surface *bmp = SDL_LoadBMP(imagePath.c_str());
@@ -132,10 +132,10 @@ int main(int argc, char *argv[])
             throw std::runtime_error(message.str());
         }
 
-        BOOST_SCOPE_EXIT_ALL(&)
+        SCOPE_EXIT([&]()
         {
             SDL_DestroyTexture(tex);
-        };
+        });
 
         //A sleepy rendering loop, wait for 3 seconds and render and present the screen each time
         for (int i = 0; i < 3; ++i)
