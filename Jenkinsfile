@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                label 'mingw64'
+                // label 'mingw64'
+                docker 'yoshi252/mingw64'
             }
 
             steps {
@@ -18,7 +19,7 @@ pipeline {
                 bat 'ninja'
                 bat 'ninja install'
 
-                stash includes: 'install/**', name: 'app'
+                stash includes: 'install/**', name: 'installed_app'
 
                 bat 'ninja zip'
                 archiveArtifacts artifacts: '**/*.zip', fingerprint: true
@@ -32,7 +33,7 @@ pipeline {
 
             steps {
                 echo 'Running Smoke Test'
-                unstash 'app'
+                unstash 'installed_app'
             }
         }
     }
