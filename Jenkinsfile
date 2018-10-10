@@ -14,10 +14,9 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Building..'
-                bat 'C:\\env.bat'
-                bat 'cmake -GNinja .'
-                bat 'ninja'
-                bat 'ninja install'
+                bat 'C:\\env.bat && cmake -GNinja .'
+                bat 'C:\\env.bat && ninja'
+                bat 'C:\\env.bat && ninja install'
 
                 stash includes: 'install/**', name: 'installed_app'
 
