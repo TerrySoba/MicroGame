@@ -8,12 +8,13 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                label 'mingw64'
+                label 'vs2017'
             }
 
             steps {
                 checkout scm
                 echo 'Building..'
+                bat 'C:\\env.bat'
                 bat 'cmake -GNinja .'
                 bat 'ninja'
                 bat 'ninja install'

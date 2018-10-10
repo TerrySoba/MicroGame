@@ -4,7 +4,7 @@ project(MicroGame)
 
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install/${PROJECT_NAME})
 
-include(mingw64.cmake)
+# include(mingw64.cmake)
 include(sdl2.cmake)
 include(package.cmake)
 
@@ -16,6 +16,8 @@ include_directories(3rd_party/tclap)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(${PROJECT_NAME}
+    game_loop.h
+    game_loop.cpp
     main.cpp)
 
 install(TARGETS ${PROJECT_NAME}
