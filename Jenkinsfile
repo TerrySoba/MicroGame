@@ -14,9 +14,7 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Building..'
-                bat 'C:\\env.bat && cmake -GNinja -DCMAKE_BUILD_TYPE=Release .'
-                bat 'C:\\env.bat && ninja'
-                bat 'C:\\env.bat && ninja install'
+                bat 'C:\\env.bat && cmake -GNinja -DCMAKE_BUILD_TYPE=Release . && ninja && ninja install'
 
                 stash includes: 'install/**', name: 'installed_app'
 
