@@ -14,7 +14,7 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Building..'
-                bat 'C:\\env.bat && cmake -GNinja .'
+                bat 'C:\\env.bat && cmake -GNinja -DCMAKE_BUILD_TYPE=Release .'
                 bat 'C:\\env.bat && ninja'
                 bat 'C:\\env.bat && ninja install'
 
