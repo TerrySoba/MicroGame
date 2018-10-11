@@ -33,6 +33,14 @@ pipeline {
                 unstash 'installed_app'
                 bat 'install\\MicroGame\\bin\\MicroGame.exe --version'
             }
+
+            post {
+                always {
+                    echo 'Clean up workspace'
+                    deleteDir() /* clean up our workspace */
+                }
+            }
+
         }
     }
 }
